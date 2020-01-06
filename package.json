@@ -1,0 +1,22 @@
+{
+  "name": "pipichat",
+  "version": "1.0.0",
+  "description": "clon de whatsapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Monserrat-303/server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Monserrat-303/pipichat/issues"
+  },
+  "homepage": "https://github.com/Monserrat-303/pipichat#readme",
+  "dependencies": {
+    "mongoose": "^5.8.4"
+  }
+}
