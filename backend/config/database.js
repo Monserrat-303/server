@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const uriRo = `mongodb+srv://rodrigobarglia:93dw5ig21hBhJQPs@cluster0-ycigw.mongodb.net/pipichat?retryWrites=true&w=majority`;
-const config = require('./config')
 //const uriRo = config.database
 class Database {
   constructor() {
@@ -9,7 +8,7 @@ class Database {
 
   _connect() {
     mongoose
-      .connect(uriRo, { useNewUrlParser: true })
+      .connect(uriRo, { useNewUrlParser: true, useUnifiedTopology: true })
       .then(() => {
         console.log("Database connection successful");
       })
