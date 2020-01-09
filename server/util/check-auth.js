@@ -5,8 +5,7 @@ const { SECRET_KEY } = require('../config')
 
 module.exports = (context) => {
     const authHeader = context.req.headers.authorization
-    if(authheader)
-    {
+    if(authHeader){
         const token = authHeader.split('Bearer ')[1]
         if(token){
             try{
@@ -17,7 +16,7 @@ module.exports = (context) => {
                 throw new AuthenticationError('Invalid/Expired token')
             }
         }
-        throw new Error("Authentication token must be 'Bearer [token")
+        throw new Error("Authentication token must be 'Bearer [token]")
     }
-    throw new Error('Authroization header must be provided')
+    throw new Error('Authorization header must be provided')
 }

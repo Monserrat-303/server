@@ -6,6 +6,19 @@ module.exports = gql`
         body: String
         createdAt: String
         name: String
+        messages: [Message]
+        reactions: [Reaction]
+    }
+    type Message{
+        id: ID
+        createdAt: String
+        name: String
+        body: String
+    }
+    type Reaction{
+        id: ID
+        createdAt: String
+        name: String
     }
     type User{
         id: ID
@@ -34,5 +47,8 @@ module.exports = gql`
         login(name: String!, password: String!): User!
         createChat(body: String!): Chat!
         deleteChat(chatId: ID!): String!
+        createMessage(chatId: String!, body: String!): Chat!
+        deleteMessage(chatId: ID!, messageId: ID!): Chat!
+        reactionChat(chatId: ID!): Chat!
     }
 `

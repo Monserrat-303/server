@@ -1,4 +1,4 @@
-const { AuthenticationError } = require('apollo-server')
+ const { AuthenticationError, UserInputError } = require('apollo-server')
 
 const Chat = require('../../models/chatSchema')
 const checkAuth = require('../../util/check-auth')
@@ -30,7 +30,6 @@ module.exports = {
     Mutation: {
         async createChat(_, { body }, context) {
             const user = checkAuth(context);
-            console.log(user);
 
             const newChat = new Chat({
                 body,
@@ -56,6 +55,29 @@ module.exports = {
                 }
             } catch (err) {
                 throw new Error(err);
+            }
+        },
+        async reactionChat(_, { chatId }, context)
+        {
+            const { name } = checkAuth(context)
+
+            const chat = await Chat.findById(chatId)
+            if(chat){
+                if(chat.reactions.find(reaction => reaction.name === name)){
+                    //Está reaccionado, desreaccionalo
+                    chat.reactions = chat.reactions.filter(reaction => reaction.name !== name)
+                } else{
+                    //NNo está reaccionado, reaccionalo
+                    chat.reactions.push({
+                        name,
+                        createdAt: new Date().toISOString()
+                    })
+                }
+
+                await chat.save()
+                return chat
+            } else{
+                throw new UserInputError('Chat not found')
             }
         }
     }

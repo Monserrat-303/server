@@ -1,5 +1,6 @@
 const usersResolver = require('./users')
 const chatsResolver = require('./chats')
+const messagesResolver = require('./messages')
 
 module.exports = {
     Query: {
@@ -8,6 +9,7 @@ module.exports = {
     },
     Mutation: {
         ...usersResolver.Mutation,
-        ...chatsResolver.Mutation
+        ...chatsResolver.Mutation,
+        ...messagesResolver.Mutation
     }
 }

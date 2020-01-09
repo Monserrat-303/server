@@ -2,18 +2,18 @@ const { model, Schema } = require('mongoose');
 
 const chatSchema = new Schema({
   body: String,
-  username: String,
+  name: String,
   createdAt: String,
-  comments: [
+  messages: [
     {
       body: String,
-      username: String,
+      name: String,
       createdAt: String
     }
   ],
-  likes: [
+  reactions: [
     {
-      username: String,
+      name: String,
       createdAt: String
     }
   ],
